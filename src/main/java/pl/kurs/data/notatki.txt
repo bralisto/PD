@@ -1,0 +1,34 @@
+Zadanie: Analiza danych pracowników oraz pojazdów w firmie
+Opis zadania:
+Firma zajmuje się zarządzaniem danymi pracowników oraz ich pojazdów.
+Twoim zadaniem jest stworzenie aplikacji, która umożliwi analizę tych danych,
+ zarówno poprzez bezpośredni wczyt danych od użytkownika, jak i przez odczyt z plików.
+
+Struktura danych:
+Person - Klasa reprezentująca osobę (imię, nazwisko, data urodzenia).
+Employee - Klasa reprezentująca pracownika (imię, nazwisko, data urodzenia, wypłata) - rozszerza klasę Person.
+Car - Klasa reprezentująca pojazd (marka, model, rok produkcji, pojemność silnika, moc, właściciel) -
+właściciel to obiekt klasy Person.
+Company - Klasa przechowująca tablicę pracowników oraz ich pojazdów.
+ Powinna przechowywać informacje o maksymalnie 10 pracownikach.
+CompanyApp - Klasa zarządzająca interakcją z użytkownikiem.
+Pozwala na wczytanie danych z plików lub od użytkownika, zapis oraz odczyt danych z plików.
+Wymagania funkcjonalne:
+Menu główne:
+
+Dodaj pracownika
+Wczytaj dane pracowników i pojazdów z pliku
+Wyświetl informacje o pracownikach i ich pojazdach
+Zapisz dane pracowników i pojazdów do pliku
+Analizuj dane
+Exit
+Analiza danych:
+
+Znajdź pracownika, który posiada najwięcej pojazdów.
+Znajdź najstarszego pracownika.
+Znajdź 3 pojazdy z najlepszym stosunkiem pojemności do mocy.
+Znajdź najstarszy pojazd w firmie.
+Znajdź pracowników, którzy mają więcej niż jeden pojazd.
+
+
+
