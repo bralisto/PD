@@ -17,35 +17,31 @@ public class CarService {
 
     private ListValidationService listValidationService;
 
-    public List<Car> findCarsWith3BestHpToDisplacementRatios(List<Employee> employeeList) {
-        listValidationService.validateEmployeeList(employeeList);
-        int AMOUNT_OF_CARS = 3;
-        List<Car> bestRatioCars = new ArrayList<>(AMOUNT_OF_CARS);
-        List<Car> allCarsList = getAllCarsFromEmployeeList(employeeList);
-        allCarsList.sort(PowerToDisplacementComparator.INSTANCE);
-        for (int i = 0; i < AMOUNT_OF_CARS; i++) {
-            bestRatioCars.add(allCarsList.get(i));
+    public List<Car> findCarsWith3BestHpToDisplacementRatios(Company company) {
+        listValidationService.validateNullOrEmptyList(company.getEmployeeList());
+        List<Car> bestRatioCars = new ArrayList<>(3);
+        List<Car> companyCars = getCompanyCars(company);
+        companyCars.sort(PowerToDisplacementComparator.INSTANCE);
+        for (int i = 0; i < 3; i++) {
+            bestRatioCars.add(companyCars.get(i));
         }
 
         return bestRatioCars;
     }
 
-    public Car getOldestCarInCompany(Company company){
-        listValidationService.validateEmployeeList(company.getEmployeeList());
-        List<Car> companyCars = getAllCarsFromEmployeeList(company.getEmployeeList());
+    public Car getOldestCarInCompany(Company company) {
+        listValidationService.validateNullOrEmptyList(company.getEmployeeList());
+        List<Car> companyCars = getCompanyCars(company);
         companyCars.sort(Comparator.comparingInt(c -> Integer.parseInt(c.getProductionYear())));
         return companyCars.get(0);
     }
 
-    private List<Car> getAllCarsFromEmployeeList(List<Employee> employeeList) {
-        listValidationService.validateEmployeeList(employeeList);
-        List<Car> allCarsList = new ArrayList<>();
-        for (Employee employee : employeeList) {
-            for (Car car : employee.getCarList()) {
-                allCarsList.add(car);
-            }
+    private static List<Car> getCompanyCars(Company company) {
+        List<Car> companyCars = new ArrayList<>();
+        for (Employee employee : company.getEmployeeList()) {
+            companyCars.addAll(employee.getCars());
         }
-        return allCarsList;
+        return companyCars;
     }
 
 

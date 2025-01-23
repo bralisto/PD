@@ -27,7 +27,6 @@ public class CompanyController {
     }
 
 
-
     public void run() {
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
@@ -96,15 +95,13 @@ public class CompanyController {
             System.out.println("Dane zostały pomyślnie wczytane.");
         } catch (Exception e) {
             System.out.println("Błąd podczas wczytywania danych: " + e.getMessage());
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
         }
     }
 
     private void displayEmployeeAndCarInfo() {
         for (Employee employee : company.getEmployeeList()) {
             System.out.println("Pracownik: " + employee.getFirstName() + " " + employee.getLastName());
-            for (Car car : employee.getCarList()) {
+            for (Car car : employee.getCars()) {
                 System.out.println("  Pojazd: " + car.getProducer() + " " + car.getModel() + ", Rok: " + car.getProductionYear());
             }
         }
@@ -135,7 +132,7 @@ public class CompanyController {
         }
 
         try {
-            System.out.println("3. Top 3 pojazdy z najlepszym stosunkiem pojemności do mocy: " + carService.findCarsWith3BestHpToDisplacementRatios(company.getEmployeeList()));
+            System.out.println("3. Top 3 pojazdy z najlepszym stosunkiem pojemności do mocy: " + carService.findCarsWith3BestHpToDisplacementRatios(company));
         } catch (Exception e) {
             System.out.println("Błąd podczas analizy pojazdów z najlepszym stosunkiem pojemności do mocy: " + e.getMessage());
         }

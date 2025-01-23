@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class LoadFromFileService {
 
-    public Company loadFromFile() throws Throwable {
+    public Company loadFromFile() throws Exception {
         System.out.print("Podaj nazwę pliku do wczytania: ");
         Scanner scanner = new Scanner(System.in);
 
@@ -28,6 +28,7 @@ public class LoadFromFileService {
 
 
     }
+
     private void checkIfFileExists(File file, String fileNameLoad) throws FileNotFoundException {
         if (!file.exists() || !file.isFile()) {
             System.out.println("Plik o nazwie " + fileNameLoad + " nie istnieje.");

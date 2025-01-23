@@ -17,7 +17,7 @@ public class EmployeeService {
 
     private ListValidationService listValidationService;
 
-    public EmployeeService () {
+    public EmployeeService() {
         this.listValidationService = new ListValidationService();
     }
 
@@ -71,7 +71,7 @@ public class EmployeeService {
 
 
                     Car car = new Car(brand, model, productionYear, engineDisplacement, horsepower, employee);
-                    employee.getCarList().add(car);
+                    employee.getCars().add(car);
                     System.out.println("Samochód został dodany do pracownika " + firstName + " " + lastName + ".");
                 } else {
                     System.out.println("Pracownik nie posiada samochodu.");
@@ -101,18 +101,21 @@ public class EmployeeService {
 
 
     public Employee findEmployeeWithMostCars(List<Employee> employeeList) throws NoEmployeeFoundException {
-        listValidationService.validateEmployeeList(employeeList);
-        employeeList.sort(Comparator.comparingInt(e -> e.getCarList().size()));
-        if (employeeList.get(0).getCarList().size() == employeeList.get(1).getCarList().size()) {
+        listValidationService.validateNullOrEmptyList(employeeList);
+        employeeList.sort(Comparator.comparingInt(e -> e.getCars().size()));
+        if (employeeList.get(0).getCars().size() == employeeList.get(1).getCars().size()) {
             throw new NoEmployeeFoundException("Nie znaleziono pracownika o największej ilości pojazdów!");
         }
         return employeeList.get(0);
     }
 
     public Employee findOldestEmployee(List<Employee> employeeList) {
-        listValidationService.validateEmployeeList(employeeList);
+        listValidationService.validateNullOrEmptyList(employeeList);
         employeeList.sort(Comparator.comparing(Employee::getBirthDate));
         return employeeList.get(0);
     }
+
+
+
 
 }

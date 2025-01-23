@@ -13,16 +13,16 @@ public abstract class Person implements Serializable {
 
     private final LocalDate birthDate;
 
-    private List<Car> carList;
+    private List<Car> cars;
+
+    public abstract double getIncome();
 
     public Person(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
-        this.carList = new ArrayList<>();
+        this.cars = new ArrayList<>();
     }
-
-    public abstract double getIncome();
 
     public String getFirstName() {
         return firstName;
@@ -36,7 +36,7 @@ public abstract class Person implements Serializable {
         return birthDate;
     }
 
-    public List<Car> getCarList() {
-        return carList;
+    public List<Car> getCars() {
+        return cars;
     }
 }
